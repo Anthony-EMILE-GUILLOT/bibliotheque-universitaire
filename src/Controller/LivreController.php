@@ -77,7 +77,17 @@ class LivreController extends AbstractController
     #[Route('/catalogue/genre/{genre}', name: 'app_catalogue_genre')]
     public function genre(string $genre): Response
     {
-        
+        $livresParGenre = [];
+        foreach ($this->livres as $livre) {
+            if ($livre['genre'] === $genre) {
+                $livresParGenre[] = $livre;
+            }
+        }
+        if (empty($livresParGenre)) {
+            throw $this->createNotFoundException('ERREUR 404 : Genre non trouvé');
+        }
+        return $this->render('catalogue/genre.html.twig', [
+            'livres' => $livresParGenre
+        ]);
     }
-
 }

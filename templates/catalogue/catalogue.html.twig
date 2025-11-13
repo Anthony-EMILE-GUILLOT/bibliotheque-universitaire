@@ -1,11 +1,22 @@
 <body>
-    <h1>livre:</h1>
+    <h1>
+        Livre:
+    </h1>
     {% for livre in livres %}
         <li>
-            {{ livre.titre }} ==> <a href="/livre/{{ livre.id }}">détails</a>
+            {{ livre.titre }}
+            ==>
+            <a href="/livre/{{ livre.id }}">
+                détails
+            </a>
+            
+        ==> <a href="/catalogue/genre/{{ livre.genre }}">plus de livre du même genre</a>
         </li>
     {% endfor %}
+    <br>
+        
+    <br>
     <a href="/">
         accueil
     </a>
-
+</body>
