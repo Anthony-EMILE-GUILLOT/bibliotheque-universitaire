@@ -1,8 +1,8 @@
 <body>
-    livre:
+    <h1>livre:</h1>
     {% for livre in livres %}
         <li>
-            {{ livre.titre }}
+            {{ livre.titre }} ==> <a href="/livre/{{ livre.id }}">détails</a>
         </li>
     {% endfor %}
     <a href="/">
