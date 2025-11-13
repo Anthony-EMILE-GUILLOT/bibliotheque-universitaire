@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LivreController extends AbstractController
 {
     private array $livres = [
-            1 => [
+        1 => [
             'id' => 1,
             'titre' => 'Introduction aux Algorithmes',
             'auteur' => 'Thomas H. Cormen',
@@ -21,8 +21,8 @@ class LivreController extends AbstractController
             données.',
             'editeur' => 'Dunod',
             'cote' => 'INF.004.COR',
-            ],
-            2 => [
+        ],
+        2 => [
             'id' => 2,
             'titre' => 'Le Rouge et le Noir',
             'auteur' => 'Stendhal',
@@ -35,8 +35,8 @@ class LivreController extends AbstractController
             'resume' => 'Roman emblématique du XIXe siècle suivant les ambitions de Julien Sorel.',
             'editeur' => 'Gallimard',
             'cote' => 'LIT.843.STE'
-            ],
-            3 => [
+        ],
+        3 => [
             'id' => 3,
             'titre' => 'Physique Quantique - Fondements et Applications',
             'auteur' => 'Michel Le Bellac',
@@ -49,36 +49,35 @@ class LivreController extends AbstractController
             'resume' => 'Introduction moderne à la mécanique quantique avec applications pratiques.',
             'editeur' => 'EDP Sciences',
             'cote' => 'PHY.530.LEB'
-            ]
-        ]; 
+        ]
+    ];
 
     #[Route('/catalogue', name: 'app_catalogue')]
     public function index(): Response
-    {    
+    {
         return $this->render('catalogue/catalogue.html.twig', [
             'livres' => $this->livres,
         ]);
     }
 
-    #[Route('/catalogue/livre/{id}', name: 'app_catalogue_detail')]
+    #[Route('/livre/{id}', name: 'app_catalogue_detail')]
     public function detail(int $id): Response
     {
-        if (isset ($this->livres[$id])){ 
+        if (isset($this->livres[$id])) {
 
             return $this->render('catalogue/detail.html.twig', [
                 'livre' => $this->livres[$id]
             ]);
-        }
-        else{
+        } else {
             throw $this->createNotFoundException('ERREUR 404 : Livre non trouvé');
         }
     }
 
-    /*
+
     #[Route('/catalogue/genre/{genre}', name: 'app_catalogue_genre')]
     public function genre(string $genre): Response
     {
-
+        
     }
-    */
+
 }
